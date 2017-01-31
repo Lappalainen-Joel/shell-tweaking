@@ -33,3 +33,28 @@ function md5compp() {
 	PROD=`echo $PWD | sed 's/'"$DEVF"'/'"$PROF"'/'`
 	md5sum $PWD/"$1" $PROD/"$1"
 }
+
+function sw2prod() {
+	PROD=`echo $PWD | sed 's/'"$DEVF"'/'"$PROF"'/'`
+	cd $PROD
+}
+
+function sw2dev() {
+	DEV=`echo $PWD | sed 's/'"$PROF"'/'"$DEVF"'/'`
+	cd $DEV
+}
+
+# Grep from history
+function hisgrep {
+	history | grep $1
+}
+
+# Grep from Installed packages
+function insgrep {
+	if [ `grep -c "ubuntu\|debian\|mint" /etc/os-release` -gt 0 ]; then
+		dpkg -l | grep "$1"
+	else
+		rpm -qa | grep "$1"
+	fi
+}
+
