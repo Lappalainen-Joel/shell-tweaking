@@ -1,0 +1,35 @@
+# External functions for bashrc.
+# either add contents of this file to the end of .bachrc, or just include this file within .bashrc.
+# 
+#
+# These functions are used for comparing two folders with same folder structure.
+# eq. 
+# 	/home/user/projects/development/ -- As development folder
+# 	/home/user/projects/production/  -- As production folder
+#
+#
+# DEVF  - Development folder name
+# PRODF - Production folder name
+
+DEVF="devaus"; export DEVF
+PROF="tuotanto"; export PROF
+	
+function compp() {
+	PROD=`echo $PWD | sed 's/'"$DEVF"'/'"$PROF"'/'`
+	ls -l $PWD/"$1" $PROD/"$1"
+}
+
+function mv2prod() {
+	PROD=`echo $PWD | sed 's/'"$DEVF"'/'"$PROF"'/'`
+	cp $PWD/"$1" $PROD/"$1"
+}
+
+function diffp() {
+	PROD=`echo $PWD | sed 's/'"$DEVF"'/'"$PROF"'/'`
+	diff $PWD/"$1" $PROD/"$1"
+}
+
+function md5compp() {
+	PROD=`echo $PWD | sed 's/'"$DEVF"'/'"$PROF"'/'`
+	md5sum $PWD/"$1" $PROD/"$1"
+}
