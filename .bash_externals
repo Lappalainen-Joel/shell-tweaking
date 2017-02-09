@@ -4,8 +4,8 @@
 #
 # These functions are used for comparing two folders with same folder structure.
 # eq. 
-# 	/home/user/projects/development/ -- As development folder
-# 	/home/user/projects/production/  -- As production folder
+#	/home/user/projects/development/ -- As development folder
+#	/home/user/projects/production/  -- As production folder
 #
 #
 # DEVF  - Development folder name
@@ -36,25 +36,40 @@ function md5compp() {
 
 function sw2prod() {
 	PROD=`echo $PWD | sed 's/'"$DEVF"'/'"$PROF"'/'`
-	cd $PROD
+	cd "$PROD"
 }
 
 function sw2dev() {
 	DEV=`echo $PWD | sed 's/'"$PROF"'/'"$DEVF"'/'`
-	cd $DEV
+	cd "$DEV"
 }
 
 # Grep from history
-function hisgrep {
+function hisgrep() {
 	history | grep $1
 }
 
 # Grep from Installed packages
-function insgrep {
+function insgrep() {
 	if [ `grep -c "ubuntu\|debian\|mint" /etc/os-release` -gt 0 ]; then
 		dpkg -l | grep "$1"
 	else
 		rpm -qa | grep "$1"
 	fi
 }
+
+# Jump X directories up
+
+function cdu() {
+FOL=""
+i="0"
+	while [ $i -lt $1 ]
+	do
+		FOL="$FOL../"
+		i=$[$i+1]
+	done
+
+	cd $FOL
+}
+
 
