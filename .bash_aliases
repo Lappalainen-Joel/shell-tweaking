@@ -17,3 +17,6 @@ alias lb='ls'
 
 #Grepping
 alias grepr='grep -r'
+
+# Finding
+alias findname='find . -name'
