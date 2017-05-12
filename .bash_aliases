@@ -9,17 +9,20 @@ alias agupd='apt-get update'
 alias agupg='apt-get upgrade'
 alias acp='apt-cache policy'
 
-#Finding
+# Finding
 alias findname='find . -name'
 alias findnewer='find . -newer'
 
-#Listing
+# Listing
 alias ll='ls -l'
 alias l='ls -ltra'
 alias lb='ls'
 
-#Grepping
+# Grepping
 alias grepr='grep -r'
+
+# Minimal terminal outlay.
+alias miniterm="export PS1='\[\033[0;35m\]\h\[\033[00m\]: ' && clear"
 
 # Sudo, this is needed if aliases above
 # are executed as sudo.
