@@ -73,3 +73,21 @@ i="0"
 }
 
 
+# Calculate difference of rows between two files.
+function wcdiff() {
+  if [ -n "$1" ] || [ -n "$2" ]
+  then
+    file1=$(wc -l $1 | awk '{print $1}')
+    file2=$(wc -l $2 | awk '{print $1}')
+    if [[ $file1 -gt $file2 ]]
+    then
+      echo $(expr $file1 - $file2)
+    else
+      echo $(expr $file2 - $file1)
+    fi
+  else
+    echo "Missing arguments."
+    echo "Usage: wcdiff <file_1> <file_2>"
+  fi
+}
+
